@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="../vendor/jquery/dist/jquery.min.js"></script>
+    <title>Registro</title>
+</head>
+<body>
+    <div class="container-alert">
+        
+    </div>
+    <div class="container-form-register">
+        <h1>¡Regístrate!</h1>
+        <form class="form-register" id="form-register" action="../src/register_controller.php" method="post">
+            <label class="label-register" for="username">Nombre de Usuario:</label>
+            <input class="input-register" type="text" id="username" name="username">
+            <label class="label-register" for="email">Correo:</label>
+            <input class="input-register" type="email" id="email" name="email">
+            <label class="label-register" for="password">Contraseña:</label>
+            <input class="input-register" type="password" id="password" name="password">
+            <input class="submit-register" type="submit" id="btn-submit" value="Enviar">
+            <p class="text-q">¿Ya tienes una cuenta? <a href="login.html" class="link-q">Inicia Sesión</a></p>
+        </form>
+    </div>
+    <script>
+        $('#form-register').submit((e) => {
+            if($('#username').val().trim() == '' && $('#email').val().trim() == '' && $('#password').val().trim() == ''){
+                e.preventDefault();
+                alert('Faltan llenar campos');
+            }
+        });
+    </script>
+</body>
+</html>

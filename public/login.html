@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="../vendor/jquery/dist/jquery.min.js"></script>
+    <title>Iniciar Sesión</title>
+</head>
+<body>
+    <div class="container-form-register">
+        <h1>¡Inicia Sesión!</h1>
+        <form class="form-register" id="form-register" action="../src/login_controller.php" method="post">
+            <label class="label-register" for="username">Nombre de Usuario:</label>
+            <input class="input-register" type="text" id="username" name="username">
+            <label class="label-register" for="password">Contraseña:</label>
+            <input class="input-register" type="password" id="password" name="password">
+            <input class="submit-register" type="submit" id="btn-submit" value="Enviar">
+            <p class="text-q">¿Aun no tienes una cuenta? <a href="register.html" class="link-q">Regístrate</a></p>
+        </form>
+    </div>
+
+    <script>
+        $('#form-register').submit((e) => {
+            let username = $('#username').val().trim();
+            let password = $('#password').val().trim();
+
+            e.preventDefault();
+            if(username == '' && password == ''){
+                alert('Faltan llenar campos');
+            }else{
+                $.ajax({
+                    data: {'username': username, 'password': password},
+                    url: '../src/login_controller.php',
+                    type: 'post',
+                    dataType: 'json',
+                    success: (response) => {
+                        if(response==0){
+                            alert("Datos incorrectos");
+                        }else{
+                            window.location.href = "principal.html";
+                        }
+                    }
+                });
+            }
+        })
+    </script>
+</body>
+</html>
